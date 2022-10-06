@@ -14,7 +14,7 @@
     //-->
  </script>
 <body onload = "JavaScript:AutoRefresh(60*1000);">
-    {% for i in range(0,20,10)%}
+    {% for i in range(0,len_df,10)%}
         <h1>{{player_names.iloc[i]}}</h1>
         <table class = "table">
             <tr class = "table__header">
