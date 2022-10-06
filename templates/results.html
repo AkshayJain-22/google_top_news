@@ -5,8 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Google Top News</title>
     <link rel="stylesheet" type= "text/css" href="{{url_for('static',filename='styles/style.css') }}">
+    <script type = "text/JavaScript">
+        <!--
+           function AutoRefresh( t ) {
+              setTimeout("location.reload(true);", t);
+           }
+        //-->
+     </script>
 </head>
-<body>
+<body onload = "JavaScript:AutoRefresh(30000);">
     {% for i in range(0,20,10)%}
         <h1>{{player_names.iloc[i]}}</h1>
         <table class = "table">
@@ -27,5 +34,6 @@
         </table>
         <img class = "img-center" src="{{wordcloud_files[i//10]}}" border=3/>
     {% endfor %}
+    <h2>NOTE: This page will refresh every 30 seconds.</h2>
 </body>
 </html>
