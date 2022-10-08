@@ -15,7 +15,9 @@
 .table__cell {
     padding: 8px;
 }
-
+.imgContainer{
+    float:left;
+}
 .img-center { 
     margin: 0 auto; 
     display: block; 
