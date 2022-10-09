@@ -12,7 +12,7 @@ def frequency_generator(titles):
     
     all_titles = all_titles.lower()
     all_titles = re.sub('[%s]' % re.escape('@!"#$%&\'()+,-./:;<=>?@[\\]^_`{|}~'), '', all_titles)
-    #words_list = all_titles.split()
+    
     words_list = [word for word in all_titles.split() if not word in stopwords]
     # gives set of unique words
     unique_words = set(words_list)
