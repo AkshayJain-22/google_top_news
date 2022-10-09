@@ -26,9 +26,9 @@
     </form>
     {% for i in range(0,len_df,10)%}
         {% if player %}
-            search_name = player
+            var search_name = player;
         {% else %}
-            search_name = player_names.iloc[i]
+            var search_name = player_names.iloc[i];
         {% endif %}
         <h1>{{search_name}}</h1>
         <table class = "table">
