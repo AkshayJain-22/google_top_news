@@ -7,5 +7,4 @@ def final_results():
 
     for name in names:
         results.append(scrapper(name))
-    print(len(results))
     return(results)
