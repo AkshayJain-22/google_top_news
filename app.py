@@ -25,7 +25,6 @@ def homepage():
     for name in name_list:
         titles = []
         titles.append(df['Title'][df['Name']==name])
-        print(titles)
         wordcloud_filenames.append(word_cloud(name,titles))
         barplots_filenames.append(plot_generator(name,titles))
     headings = ('Title','Source','Pub_time')
