@@ -13,17 +13,16 @@
        }
     //-->
  </script>
-
+<form action="#">
+    <label for="player_name">Select Player</label>
+    <select name="player" id="player" size="4">
+    {% for name in name_list %}
+        <option value="{{name}}">{{name}}</option>
+    {% endfor %}
+        </select>
+        <input type="submit" value="Submit" />
+</form>
 <body onload = "JavaScript:AutoRefresh(15*60*1000);">
-    <form action="#">
-        <label for="player_name">Select Player</label>
-        <select name="player" id="player" size="4">
-        {% for name in name_list %}
-            <option value="{{name}}">{{name}}</option>
-        {% endfor %}
-            </select>
-            <input type="submit" value="Submit" />
-    </form>
     {% if player %}
         {% for i in range(0,len_df,10)%}
             <h1>{{player}}</h1>
