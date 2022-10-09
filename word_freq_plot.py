@@ -10,5 +10,5 @@ def plot_generator(name,titles):
     plt.xticks(rotation=90,)
     plt.xlabel('xlabel', fontsize=1)
     plots_filename = f'static/images/{name}_plot.png'.replace(' ','_')
-    plt.savefig(plots_filename,dpi=300, bbox_inches='tight')
+    plt.savefig(plots_filename,dpi=100, bbox_inches='tight')
     return(plots_filename)
