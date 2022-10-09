@@ -32,13 +32,8 @@
                 </tr>
             {% endfor %}
         </table>
-        <div class="imgContainer">
-            <img class = "img-center" src="{{wordcloud_files[i//10]}}" border=3/>
-        </div>
-        <div class="imgContainer">
-            <img class = "img-center" src="{{plot_files[i//10]}}" border=3/>
-        </div>
-        
+        <img class = "img-center" src="{{wordcloud_files[i//10]}}" border=3/>
+        <img class = "img-center" src="{{plot_files[i//10]}}" border=3/>
     {% endfor %}
     <h2>NOTE: This page will refresh every minute.</h2>
 </body>

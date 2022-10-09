@@ -18,6 +18,7 @@ def homepage():
     for result in results:
         for i in range(len(result['titles'])):
             inner_dic['Name'] = result['Name']
+            print(result['Name'])
             inner_dic['Title'] = result['titles'][i]
             inner_dic['Source'] = result['sources'][i]
             inner_dic['Pub_time'] = result['pub_times'][i]

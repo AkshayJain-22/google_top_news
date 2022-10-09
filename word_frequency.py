@@ -24,4 +24,4 @@ def frequency_generator(titles):
         frequency_df.loc[ctr].Words = word
         frequency_df.loc[ctr].Frequency = words_list.count(word)
         ctr+=1
-    return(frequency_df.dropna(inplace=True))
+    return(frequency_df)
