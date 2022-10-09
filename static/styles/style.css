@@ -40,6 +40,8 @@ label {
 }
 
 select {
+    align-items: center;
+    position: center;
     margin-bottom: 10px;
     margin-top: 10px;
     font-family: cursive, sans-serif;
