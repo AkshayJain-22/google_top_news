@@ -1,4 +1,4 @@
-from flask import Flask, render_template 
+from flask import Flask, render_template, request
 import pandas as pd
 from result_collector import final_results
 from give_me_q import q_generator
@@ -6,13 +6,27 @@ from word_cloud_maker import word_cloud
 from word_freq_plot import plot_generator
 app=Flask(__name__)
 
+results = []
+inner_dic = {}
+titles=[]
+barplots_filenames=[]
+wordcloud_filenames=[]
+name_list=[]
+headings = ()
+df = pd.DataFrame()
+
 @app.route("/",methods=['GET','POST'])
 def homepage():
+    global results
+    global inner_dic
+    global titles
+    global barplots_filenames
+    global wordcloud_filenames
+    global name_list
+    global headings
+    global df
+    
     results = final_results()
-    inner_dic = {}
-    titles=[]
-    barplots_filenames=[]
-    wordcloud_filenames=[]
     name_list=q_generator()
     df = pd.DataFrame(columns=['Name','Title','Source','Pub_time'])
     for result in results:
@@ -29,6 +43,12 @@ def homepage():
         barplots_filenames.append(plot_generator(name,titles))
     headings = ('Title','Source','Pub_time')
     return render_template("results.html",name_list = name_list, table_headings = headings, player_names=df['Name'], data=df.drop(columns=['Name']),len_df = len(df), wordcloud_files = wordcloud_filenames, plot_files = barplots_filenames)
+
+@app.route("/filter",methods=['GET','POST'])
+def filter():
+    player_name = request.form['player']
+
+    return render_template("results.html",name_list = name_list, table_headings = headings, player_names=df['Name'], data=df.drop(columns=['Name']),len_df = len(df), wordcloud_files = wordcloud_filenames, plot_files = barplots_filenames, player_name = player_name)
 
 if __name__=="__main__":
     app.run(debug=True)
