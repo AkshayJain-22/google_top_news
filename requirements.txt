@@ -15,4 +15,3 @@ lxml
 requests
 wordcloud
 pandas
-mechanize

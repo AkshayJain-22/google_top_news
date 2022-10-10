@@ -41,7 +41,6 @@ label {
 
 select {
     align-items: center;
-    position: center;
     margin-bottom: 10px;
     margin-top: 10px;
     font-family: cursive, sans-serif;
@@ -51,4 +50,7 @@ select {
     border: 1px solid black;
     padding: 4px;
     border-radius: 9px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
 }
