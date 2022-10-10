@@ -32,9 +32,9 @@
 <body onload = "JavaScript:AutoRefresh(15*60*1000);">
     {% if player_name %}
         {% for i in range(0,len_df,10)%}
-            {% if player_name == player_names.iloc[i] %}
+            {% if player_names.iloc[i]==player_name %}
+                <h1>{{player_names.iloc[i]}}</h1>
                 {% for i in range(0,len_df,10)%}
-                    <h1>{{player_names.iloc[i]}}</h1>
                     <table class = "table">
                         <tr class = "table__header">
                             {% for header in table_headings %}
@@ -57,6 +57,7 @@
             {% endif %}
         {% endfor %}
     {% else %}
+        <h1>No Heading</h1>
         {% for i in range(0,len_df,10)%}
             <h1>{{player_names.iloc[i]}}</h1>
             <table class = "table">
