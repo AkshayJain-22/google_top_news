@@ -48,7 +48,7 @@ def homepage():
 def filter():
     player_name = request.form['player']
     global df
-    df = df[df['Name']==player_name]
+    filter_df = df[df['Name']==player_name]
     global wordcloud_filenames
     global barplots_filenames
     filter_wordclouds=[]
@@ -58,7 +58,7 @@ def filter():
             filter_wordclouds.append(wordcloud_filenames[i])
             filter_barplots.append(barplots_filenames[i])
 
-    return render_template("results.html",name_list = name_list, table_headings = headings, player_names=df['Name'], data=df.drop(columns=['Name']),len_df = len(df), wordcloud_files = filter_wordclouds, plot_files = filter_barplots)
+    return render_template("results.html",name_list = name_list, table_headings = headings, player_names=filter_df['Name'], data=filter_df.drop(columns=['Name']),len_df = len(filter_df), wordcloud_files = filter_wordclouds, plot_files = filter_barplots, player_name = player_name)
 
 if __name__=="__main__":
     app.run(debug=True)
