@@ -30,56 +30,27 @@
     </form>
 {% endif %}
 <body onload = "JavaScript:AutoRefresh(15*60*1000);">
-    {% if player_name %}
-        {% for i in range(0,len_df,10)%}
-            {% if player_names.iloc[i]==player_name %}
-                <h1>{{player_names.iloc[i]}}</h1>
-                {% for i in range(0,len_df,10)%}
-                    <table class = "table">
-                        <tr class = "table__header">
-                            {% for header in table_headings %}
-                            <th class = "table__cell">{{ header }}</th>   
-                            {% endfor %}
-                        </tr>
-                        {% for row in range(len_df) %}
-                            <tr class = "table__row">
-                                {% for cell in data.iloc[row] %}
-                                    {% if player_names.iloc[row]==player_name %}
-                                        <td class = "table__cell">{{cell}}</td>
-                                    {% endif %}
-                                {% endfor %}
-                            </tr>
-                        {% endfor %}
-                    </table>
-                    <img class = "img-center" src="{{wordcloud_files[i//10]}}" border=3/>
-                    <img class = "img-center" src="{{plot_files[i//10]}}"/>
+    {% for i in range(0,len_df,10)%}
+        <h1>{{player_names.iloc[i]}}</h1>
+        <table class = "table">
+            <tr class = "table__header">
+                {% for header in table_headings %}
+                <th class = "table__cell">{{ header }}</th>   
                 {% endfor %}
-            {% endif %}
-        {% endfor %}
-    {% else %}
-        <h1>No Heading</h1>
-        {% for i in range(0,len_df,10)%}
-            <h1>{{player_names.iloc[i]}}</h1>
-            <table class = "table">
-                <tr class = "table__header">
-                    {% for header in table_headings %}
-                    <th class = "table__cell">{{ header }}</th>   
+            </tr>
+            {% for row in range(len_df) %}
+                <tr class = "table__row">
+                    {% for cell in data.iloc[row] %}
+                        {% if player_names.iloc[row]==player_names.iloc[i] %}
+                            <td class = "table__cell">{{cell}}</td>
+                        {% endif %}
                     {% endfor %}
                 </tr>
-                {% for row in range(len_df) %}
-                    <tr class = "table__row">
-                        {% for cell in data.iloc[row] %}
-                            {% if player_names.iloc[row]==player_names.iloc[i] %}
-                                <td class = "table__cell">{{cell}}</td>
-                            {% endif %}
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </table>
-            <img class = "img-center" src="{{wordcloud_files[i//10]}}" border=3/>
-            <img class = "img-center" src="{{plot_files[i//10]}}"/>
-        {% endfor %}
-    {% endif %}
+            {% endfor %}
+        </table>
+        <img class = "img-center" src="{{wordcloud_files[i//10]}}" border=3/>
+        <img class = "img-center" src="{{plot_files[i//10]}}"/>
+    {% endfor %}
     <h2>NOTE: This page will refresh every 15 minutes.</h2>
 </body>
 </html>
