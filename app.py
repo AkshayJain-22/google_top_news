@@ -25,25 +25,39 @@ def homepage():
     global name_list
     global headings
     global df
-    
-    results = final_results()
-    name_list=q_generator()
-    df = pd.DataFrame(columns=['Name','Title','Source','Pub_time'])
-    for result in results:
-        for i in range(len(result['titles'])):
-            inner_dic['Name'] = result['Name']
-            inner_dic['Title'] = result['titles'][i]
-            inner_dic['Source'] = result['sources'][i]
-            inner_dic['Pub_time'] = result['pub_times'][i]
-            df=df.append(inner_dic,ignore_index=True)
-    for name in name_list:
-        titles = []
-        titles.append(df['Title'][df['Name']==name])
-        wordcloud_filenames.append(word_cloud(name,titles))
-        barplots_filenames.append(plot_generator(name,titles))
-    headings = ('Title','Source','Pub_time')
-    return render_template("results.html",name_list = name_list, table_headings = headings, player_names=df['Name'], data=df.drop(columns=['Name']),len_df = len(df), wordcloud_files = wordcloud_filenames, plot_files = barplots_filenames)
 
+    headings = ('Title','Source','Pub_time')
+    
+    try:
+        player_name = request.form['player']
+    except:
+        name_list=q_generator()
+    else:
+        name_list = [player_name]
+    finally:
+        results = final_results(name_list)
+        df = pd.DataFrame(columns=['Name','Title','Source','Pub_time'])
+        for result in results:
+            for i in range(len(result['titles'])):
+                inner_dic['Name'] = result['Name']
+                inner_dic['Title'] = result['titles'][i]
+                inner_dic['Source'] = result['sources'][i]
+                inner_dic['Pub_time'] = result['pub_times'][i]
+                df=df.append(inner_dic,ignore_index=True)
+        barplots_filenames=[]
+        wordcloud_filenames=[]
+        for name in name_list:
+            titles = []
+            titles.append(df['Title'][df['Name']==name])
+            wordcloud_filenames.append(word_cloud(name,titles))
+            barplots_filenames.append(plot_generator(name,titles))
+    
+    try:
+        return render_template("results.html",name_list = q_generator(), table_headings = headings, player_names=df['Name'], data=df.drop(columns=['Name']),len_df = len(df), wordcloud_files = wordcloud_filenames, plot_files = barplots_filenames, player_name = player_name)
+
+    except:
+        return render_template("results.html",name_list = q_generator(), table_headings = headings, player_names=df['Name'], data=df.drop(columns=['Name']),len_df = len(df), wordcloud_files = wordcloud_filenames, plot_files = barplots_filenames)
+        
 @app.route("/filter",methods=['GET','POST'])
 def filter():
     player_name = request.form['player']
