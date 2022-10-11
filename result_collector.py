@@ -1,4 +1,3 @@
-from give_me_q import q_generator
 from news_scrapper import scrapper
 
 def final_results(names):

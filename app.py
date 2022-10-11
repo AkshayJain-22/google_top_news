@@ -17,6 +17,7 @@ df = pd.DataFrame()
 
 @app.route("/",methods=['GET','POST'])
 def homepage():
+    pd.set_option('display.max_colwidth', None)
     global results
     global inner_dic
     global titles
@@ -28,6 +29,7 @@ def homepage():
 
     headings = ('Title','Source','Pub_time')
     
+
     try:
         player_name = request.form['player']
     except:
@@ -51,7 +53,7 @@ def homepage():
             titles.append(df['Title'][df['Name']==name])
             wordcloud_filenames.append(word_cloud(name,titles))
             barplots_filenames.append(plot_generator(name,titles))
-    
+            print(titles)
     try:
         return render_template("results.html",name_list = q_generator(), table_headings = headings, player_names=df['Name'], data=df.drop(columns=['Name']),len_df = len(df), wordcloud_files = wordcloud_filenames, plot_files = barplots_filenames, player_name = player_name)
 

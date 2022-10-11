@@ -14,9 +14,10 @@ def frequency_generator(titles):
     all_titles = re.sub('[%s]' % re.escape('@!"#$%&\'()+,-./:;<=>?@[\\]^_`{|}~'), '', all_titles)
     
     words_list = [word for word in all_titles.split() if not word in stopwords]
+    print(words_list)
     # gives set of unique words
     unique_words = set(words_list)
-    frequency_df = pd.DataFrame(columns=['Words','Frequency'],index=range(100))
+    frequency_df = pd.DataFrame(columns=['Words','Frequency'],index=range(500))
     ctr=0
     for word in unique_words :
         frequency_df.loc[ctr].Words = word
