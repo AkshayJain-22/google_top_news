@@ -1,6 +1,8 @@
 from word_frequency import frequency_generator
 from matplotlib import pyplot as plt
 import pandas as pd
+import matplotlib
+matplotlib.use("Qt5Agg")
 
 
 def plot_generator(name,titles):
