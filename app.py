@@ -45,7 +45,9 @@ def homepage():
                 inner_dic['Title'] = result['titles'][i]
                 inner_dic['Source'] = result['sources'][i]
                 inner_dic['Pub_time'] = result['pub_times'][i]
-                df=df.append(inner_dic,ignore_index=True)
+                new_row = pd.DataFrame(inner_dic,index=[0])
+                df = pd.concat([df,new_row],ignore_index=True)
+                #df=df.append(inner_dic,ignore_index=True)
         barplots_filenames=[]
         wordcloud_filenames=[]
         for name in name_list:
