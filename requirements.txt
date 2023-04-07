@@ -15,3 +15,5 @@ lxml
 requests
 wordcloud
 pandas
+flask
+PyQt5
