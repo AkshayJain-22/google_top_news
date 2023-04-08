@@ -47,7 +47,7 @@ def homepage():
                 inner_dic['Pub_time'] = result['pub_times'][i]
                 new_row = pd.DataFrame(inner_dic,index=[0])
                 df = pd.concat([df,new_row],ignore_index=True)
-                #df=df.append(inner_dic,ignore_index=True)
+                #df=df.append(inner_dic,ignore_index=True)    This is deprecated
         barplots_filenames=[]
         wordcloud_filenames=[]
         for name in name_list:
