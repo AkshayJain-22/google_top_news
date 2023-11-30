@@ -1,6 +1,6 @@
 # google_top_news
 
-- It is a Flask App that scrapes Top Articles around a given entity/topic from Google in real time.
+- It is a Flask App that scrapes Top Articles around given entities/topics from Google in real time.
 - The region can bee specified as desired.
 - Tabulates the news title, publishing house and age of the article published.
 - Generates a bar graph for word frequency and a worcloud to give idea about whats Hot around the entity.
